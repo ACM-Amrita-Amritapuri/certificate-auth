@@ -7,6 +7,9 @@ function App() {
     <Routes> 
       <Route path="/search" exact element={<Search />} />
       <Route path="/certi" exact element={<Certificate />} />
+      <Route path="/certi/:id" exact element={<Certificate />} />
+      
+
 
     </Routes>
     )
