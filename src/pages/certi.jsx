@@ -1,8 +1,14 @@
+import { useParams } from 'react-router-dom';
+
 function Certificate() {
-    return (
-      <p>certi component</p>
-    )
-  }
-  
+      let { id } = useParams();
+      return (
+        <div>
+          Now showing post {id}
+        </div>
+      );
+    }
   export default Certificate;
+    
+
   
