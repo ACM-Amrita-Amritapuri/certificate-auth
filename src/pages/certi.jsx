@@ -21,9 +21,17 @@ const Certificate = () => {
       Now showing post {id}
       
       <h1 className='cert-header'>Name of Event for which certificate is generated</h1>
-      <button className='download-btn' onClick={handleDownload}>
-        Download Certificate
-      </button>
+      <div className="grid-container">
+        <div className="image-container">
+          <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--HIr7O5M4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z84rx7n3lfrcq62aesg0.png" alt="Your Cert" />
+        </div>
+        <div class="button-container">
+          <div className="button" onClick={handleDownload} >Download Certificate</div>
+          <div className="button">Share Via LinkedIn</div>
+          <div className="button">Add to LinkedIn Profile</div>
+          <div className="button">Copy Link</div>
+        </div>
+      </div>
     </div>
   );
 
