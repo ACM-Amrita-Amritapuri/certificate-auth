@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 
 const Certificate = () => {
 
-  const certPath = '../../public/certificate/dummy.pdf';
-  const certName = 'certificate.pdf';
+  const certPath = '../../public/certificate/dummy.jpeg';
+  const certName = 'certificate.jpeg';
 
   const handleDownload = () => {
     const link = document.createElement('a');
