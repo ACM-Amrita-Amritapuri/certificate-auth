@@ -18,27 +18,36 @@ const Certificate = () => {
 
   let { id } = useParams();
       return (
-    <div className='cert'>
-      {/* Testing purpose */}
-      Now showing post {id}
-      
-      <h1 className='cert-header'>Name of Event for which certificate is generated</h1>
-      <div className="grid-container">
-        <div className="image-container">
-          <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--HIr7O5M4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z84rx7n3lfrcq62aesg0.png" alt="Your Cert" />
-        </div>
-        <div class="button-container">
-          <div className="button" onClick={handleDownload} >Download Certificate</div>
-          <div className="button">Share Via LinkedIn</div>
-          <div className="button" onClick={addToProfile}>Add to LinkedIn Profile</div>
-          <div className="button">Copy Link</div>
-        </div>
-      </div>
-    </div>
-  );
+        <>
+          {/* Testing purpose */}
+          Now showing post {id}
 
-  }
-  export default Certificate;
-    
+          <div className="flex flex-col items-center justify-center min-h-screen m-0 mx-6">
+            <div className="title text-3xl my-8 font-medium">Unlocking DSA</div>
+            <div className="lg:flex lg:justify-start lg:space-x-4">
+              <img
+                src="../../certificate/dummy.jpeg"
+                alt="Certificate"
+                className="w-full h-full lg:w-auto lg:h-auto mb-8"
+              />
+              <div className="flex flex-col space-y-4 items-center lg:my-36 lg:space-y-6">
+                <button className="download-btn px-4 py-2 text-white rounded-lg w-52 md:w-64 whitespace-nowrap" onClick={handleDownload}>
+                  Download Certificate
+                </button>
+                <button className="share-btn px-4 py-2 text-white rounded-lg w-52 md:w-64 whitespace-nowrap	">
+                  Share Via LinkedIn
+                </button>
+                <button className="add-btn px-4 py-2 text-white rounded-lg w-52 md:w-64 whitespace-nowrap" onClick={addToProfile}>
+                  Add to LinkedIn Profile
+                </button>
+                <button className="copy-btn px-4 py-2 text-white rounded-lg w-52 md:w-64 whitespace-nowrap	">
+                  Copy Link
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      );
+}
 
-  
+export default Certificate;
