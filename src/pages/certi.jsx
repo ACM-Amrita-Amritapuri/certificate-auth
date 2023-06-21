@@ -1,6 +1,8 @@
 import React from 'react';
 import '../index.css';
 import { useParams } from 'react-router-dom';
+import addToProfile from '../utils/button-add-to-profile';
+
 
 const Certificate = () => {
 
@@ -28,7 +30,7 @@ const Certificate = () => {
         <div class="button-container">
           <div className="button" onClick={handleDownload} >Download Certificate</div>
           <div className="button">Share Via LinkedIn</div>
-          <div className="button">Add to LinkedIn Profile</div>
+          <div className="button" onClick={addToProfile}>Add to LinkedIn Profile</div>
           <div className="button">Copy Link</div>
         </div>
       </div>
