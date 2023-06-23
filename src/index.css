@@ -2,50 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .cert {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 3%;
 }
 
 .cert-header {
     font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-gap: 50px;
-    margin: 50px;
+    margin: 30px;
+    width: 80%;
   }
   
   .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    grid-column: 1;
+    grid-row: 2;
   }
   
   .image-container img {
     max-width: 100%;
     max-height: 100%;
   }
-  
+
+
   .button-container {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    grid-column: 2;
+    grid-row: 2;
   }
 
-  .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3498db;
-    color: white;
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
+
+  .btn {
+    @apply h-16 w-full font-bold py-2 px-10 rounded flex items-center justify-center;
   }
+  .btn-green {
+    @apply bg-green-700 text-white;
+  }
+  .btn-green:hover {
+    @apply bg-green-800;
+  }
+  .btn-transparent {
+    @apply bg-transparent text-[#007FB1] border border-blue-500;
+  }
+  .btn-transparent-hover {
+    @apply bg-[#007FB1] text-white;
+  }
+
+  .btn:first-child::before{
+    content: url("../public/download.png");
+    padding: 0.5rem;
+  }
+
+  .separator-line {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+ }
+ .copy-textbox{
+  @apply flex w-full
+ }
+
+ .textbox{
+   @apply w-4/6 h-10 bg-slate-100 border border-t-slate-900 border-t-slate-900 border-l-slate-900 border-b-slate-900 rounded-l-full truncate;
+}
+  
+.text{
+  @apply flex h-full w-full px-5 items-center text-base;
+}
+
+.copy-btn{
+  @apply h-10 w-2/6 bg-green-700 hover:bg-green-800 text-white rounded-r-full flex items-center justify-center border border-b-slate-900 border-r-slate-900 border-t-slate-900;
+}
+
+
+@media (max-width:1255px) {
+  .cert-header{
+    font-size: 24px;
+  }
+  .btn{
+    @apply h-12
+  }
+}
+@media (max-width:1046px) {
+  .cert-header{
+    font-size: 18px;
+  }
+
+  .grid-container{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .button-container{
+    grid-row: 3;
+    grid-column: 1;
+  }
+  .btn{
+    @apply h-10
+  }
+}

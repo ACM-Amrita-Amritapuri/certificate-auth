@@ -1,13 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { storage } from '../firebaseConfig';
+import React, { useState, useEffect } from "react";
+import "../index.css";
+import { useParams } from "react-router-dom";
+import { storage } from "../firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
-import addToProfile from '../utils/button-add-to-profile';
+import addToProfile from "../utils/button-add-to-profile";
+import handleDownload from "../utils/button-download";
+import { LinkedinIcon } from "react-share";
 
 const Certificate = () => {
   const { id } = useParams();
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const MouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const MouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const bgStyle = isHovered ? { fill: "#007FB1" } : { fill: "white" };
+  const iconFillColor = isHovered ? "white" : "#007FB1";
+  const newClass = isHovered
+    ? "btn btn-transparent-hover"
+    : "btn btn-transparent";
+
+  const copyText = isCopied ? "Copied" : "Copy";
 
   useEffect(() => {
     const fetchImageUrl = async () => {
@@ -25,20 +46,14 @@ const Certificate = () => {
     fetchImageUrl();
   }, [id]);
 
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = "certificate";
-    link.click();
-  };
-
   return (
-    <div className='cert'>
+    <div className="cert">
       {/* Testing purpose */}
       Now showing post {id}
-
-      <h1 className='cert-header'>Name of Event for which certificate is generated</h1>
       <div className="grid-container">
+        <h1 className="cert-header">
+          Name of Event for which certificate is generated
+        </h1>
         <div className="image-container">
           {loading ? (
             <p>Loading...</p>
@@ -48,19 +63,45 @@ const Certificate = () => {
             <div>Not found...</div>
           )}
         </div>
+
         <div class="button-container">
-          <div className="button" onClick={handleDownload}>
-            Download Certificate
+          <button className="btn btn-green" onClick={handleDownload}>
+            Download
+          </button>
+          <button
+            className={newClass}
+            onClick={addToProfile}
+            onMouseEnter={MouseEnter}
+            onMouseLeave={MouseLeave}
+          >
+            <LinkedinIcon
+              size={32}
+              bgStyle={bgStyle}
+              iconFillColor={iconFillColor}
+            />
+            Add to profile
+          </button>
+          <div className="separator-line"></div>
+          <div className="copy-textbox">
+            <div className="textbox">
+              <span className="text">{window.location.href}</span>
+            </div>
+            <button
+              className="copy-btn"
+              onClick={() => {
+                const currentUrl = window.location.href;
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                  setIsCopied(true);
+                  setTimeout(() => setIsCopied(false), 3000);
+                });
+              }}
+            >
+              {copyText}
+            </button>
           </div>
-          <div className="button">Share Via LinkedIn</div>
-          <div className="button" onClick={addToProfile}>
-            Add to LinkedIn Profile
-          </div>
-          <div className="button">Copy Link</div>
         </div>
       </div>
     </div>
   );
 };
-
 export default Certificate;
