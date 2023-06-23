@@ -12,6 +12,7 @@ const Certificate = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const MouseEnter = () => {
     setIsHovered(true);
@@ -26,6 +27,8 @@ const Certificate = () => {
   const newClass = isHovered
     ? "btn btn-transparent-hover"
     : "btn btn-transparent";
+
+  const copyText = isCopied ? "Copied" : "Copy";
 
   useEffect(() => {
     const fetchImageUrl = async () => {
@@ -83,7 +86,18 @@ const Certificate = () => {
             <div className="textbox">
               <span className="text">{window.location.href}</span>
             </div>
-            <button className="copy-btn">Copy</button>
+            <button
+              className="copy-btn"
+              onClick={() => {
+                const currentUrl = window.location.href;
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                  setIsCopied(true);
+                  setTimeout(() => setIsCopied(false), 3000);
+                });
+              }}
+            >
+              {copyText}
+            </button>
           </div>
         </div>
       </div>
